@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				position: relative;
+				width: 500px;
+				height: 30px;
+				background-color: #ddd;
+			}
+			.yuan {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background-color: #40D0A7;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+		 	<div id="mathBall" class="yuan"></div>
+		</div>
+		<script src="tween.js" type="text/javascript" charset="utf-8"></script>
+		<script src="animation.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			document.getElementById('mathBall').onclick = function() {
+				var ball = this;
+				Math.animation(0, 800-40 , function (value) {
+    ball.style.transform = 'translateX(' + value + 'px)';
+}, 'Quart.easeOut', 600);  
+			};
+		</script>
+	</body>
+
+</html>

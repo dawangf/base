@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>.stop()和 .stop() 区别</title>
+		<style type="text/css">
+			ul li {
+				width: 100px;
+				height: 30px;
+				background: #333;
+				margin-bottom: 10px;
+				color: #fff;
+			}
+			 ul#noflyul li{
+				background: #999;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="flyul">
+			<li>有.stop()</li>
+			<li>有.stop()</li>
+			<li>有.stop()</li>
+			<li>有.stop()</li>
+			<li>有.stop()</li>
+		</ul>
+		
+		<ul id="noflyul">
+			<li>没有.stop()</li>
+			<li>没有.stop()</li>
+			<li>没有.stop()</li>
+			<li>没有.stop()</li>
+			<li>没有.stop()</li>
+		</ul>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			$('#flyul li').mouseenter(function() {
+				$(this).stop().animate({
+					//将此处改为$(this).animate({对比一下不带stop的运行效果
+					width: '300px'
+				}, 1000);
+			});
+			$('#flyul li').mouseleave(function() {
+				$(this).stop().animate({
+					//将此处改为$(this).animate({对比一下不带stop的运行效果
+					width: '100px'
+				}, 1000);
+			});
+			
+			$('#noflyul li').mouseenter(function() {
+				$(this).animate({
+					//将此处改为$(this).animate({对比一下不带stop的运行效果
+					width: '300px'
+				}, 1000);
+			});
+			$('#noflyul li').mouseleave(function() {
+				$(this).animate({
+					//将此处改为$(this).animate({对比一下不带stop的运行效果
+					width: '100px'
+				}, 1000);
+			});
+		</script>
+
+	</body>
+
+</html>

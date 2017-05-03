@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+$rem:px!default; //单位 
+$num:20!default;   //倍数
+
+@for $i from 1 to 30 {
+    .$rem{
+        font-size: 0.5rem;
+    }
+    
+};

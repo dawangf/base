@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>报修</title>
+		<link rel="stylesheet" type="text/css" href="WEIXIN/css/weui.min.css" />
+		<script type="text/JavaScript" src="WEIXIN/js/jweixin-1.0.0.js"></script>
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/flexslider.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+	</head>
+	<style>
+		/*a  upload */
+		
+		.a-upload {
+			padding: 4px 10px;
+			height: 20px;
+			line-height: 20px;
+			position: relative;
+			cursor: pointer;
+			color: #888;
+			background: #fafafa;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			/*  overflow: hidden; */
+			display: inline-block;
+			*display: inline;
+			*zoom: 1
+		}
+		
+		.a-upload input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+			filter: alpha(opacity=0);
+			cursor: pointer
+		}
+		
+		.a-upload:hover {
+			color: #444;
+			background: #eee;
+			border-color: #ccc;
+			text-decoration: none
+		}
+		
+		.qin {
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 90%;
+			overflow-x: hidden;
+			/* overflow:scroll; */
+		}
+	</style>
+
+	<body>
+		<div class="qin">
+			<div class="weui-actionsheet__cell" style="padding: 2px 0 2px 0">
+				<h4>填写报修单</h4>
+			</div>
+			<div class="weui-cells__title" style="margin: 0 0 0 0">
+				<h4>选择项目和设备</h4>
+			</div>
+			<div class="weui-cells">
+				<div class="weui-cell weui-cell_select weui-cell_select-after">
+					<div class="weui-cell__hd">
+						<label for="" class="">项目：</label>
+					</div>
+					<div class="weui-cell__bd">
+						<select class="weui-select" id="ProjectSelect" name="select1" onchange="changeProject(this);">
+						</select>
+					</div>
+				</div>
+				<div class="weui-cell weui-cell_select weui-cell_select-after">
+					<div class="weui-cell__hd">
+						<label for="" class="">设备：</label>
+					</div>
+					<div class="weui-cell__bd">
+						<select class="weui-select" id="EquipmentSelect" name="select2">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells__title">
+				<h4>文字描述</h4>
+			</div>
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						<textarea id="textExplain" class="weui-textarea" placeholder="文字描述尽量不要太少" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			<!-- ************************************* -->
+			<div>
+				<div class="weui-cells weui-cells_form" style="margin-top: 0px" id=uploader>
+					<div class=weui-cell style="padding-top: 5px; padding-bottom: 5px">
+						<div class=weui-cell__bd>
+							<div class=weui-uploader>
+								<div class=weui-uploader__hd style="padding-bottom: 0">
+									<p class=weui-uploader__title>图片上传</p>
+									<div class=weui-uploader__info>
+										<span id=uploadCount>0</span>/5
+									</div>
+								</div>
+								<div class=weui-uploader__bd>
+									<ul class=weui-uploader__files id=uploaderFiles></ul>
+									<div class=weui-uploader__input-box>
+										<input id=uploaderInput class=weui-uploader__input type=file accept=image/* capture="camera" multiple>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- !!!!!!!!视频!!!!!!!!!!!!!!!!!!!!!!!!!!!1 -->
+			<div class="weui-cells weui-cells_form" style="padding: 5px 5px 2px 17px; margin-top: 0px">
+
+				<div class="camera-area">
+					<form enctype="multipart/form-data" method="post">
+						<a href="javascript:;" class="a-upload"> <input name="fileToUpload" class="fileToUpload" type="file" accept="video/*" capture="camcorder">上传视频
+						</a> <span id="fileName" style="font-size: 18px"></span>
+						<!-- <div class="upload-progress"><span></span></div> -->
+						<!--  -->
+						<div class="weui-progress">
+							<div class="weui-progress__bar">
+								<div id="qin_progress" class="weui-progress__inner-bar js_progress" style="width: 0%;"></div>
+							</div>
+							<a href="javascript:;" class="weui-progress__opr"> <i class="weui-icon-cancel"></i>
+							</a>
+						</div>
+					</form>
+					<div class="thumb"></div>
+				</div>
+				<a href="javascript:;" class="weui-btn weui-btn_primary" onclick="submitRepairTable();">提交表单</a>
+			</div>
+			<script type="text/javascript" src="WEIXIN/js/zepto.min.js"></script>
+			<script type="text/javascript" src="WEIXIN/js/upload.js"></script>
+			<script type="text/javascript">
+				$(function() {
+					$(".camera-area").fileUpload({
+						"url": "./upload/custVedioCon",
+						"file": "myFile"
+					});
+				})
+			</script>
+			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 -->
+		</div>
+		<nav class="bottom-nav">
+			<a href="wx_cusmenu.html" class="bottom-nav-item">
+				<div class="bottom-nav-icon">
+					<i class="diy-icon"><i class="fa fa-home"></i></i>
+				</div>
+				<div class="bottom-nav-title">首页</div>
+			</a>
+			<a href="wx_repairtable.html" class="bottom-nav-item on">
+				<div class="bottom-nav-icon">
+					<i class="diy-icon"><i class="fa fa-wrench"></i></i>
+				</div>
+				<div class="bottom-nav-title">我要报修</div>
+			</a>
+			<a href="wx_myWorkTable.html" class="bottom-nav-item ">
+				<div class="bottom-nav-icon">
+					<i class="diy-icon"><i class="fa fa-tasks"></i></i>
+				</div>
+				<div class="bottom-nav-title">我的工单</div>
+			</a>
+			<a href="wx_mydata.html" class="bottom-nav-item ">
+				<div class="bottom-nav-icon">
+					<i class="diy-icon"><i class="fa fa-user"></i></i>
+				</div>
+				<div class="bottom-nav-title">个人中心</div>
+			</a>
+		</nav>
+		<div id="dialogs">
+			<!--BEGIN loadError-->
+			<div class="js_dialog" id="loadError" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">加载数据发生错误。。。</div>
+					<div class="weui-dialog__ft">
+						<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+			<!--BEGIN loadError-->
+			<div class="js_dialog" id="success" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">报修信息，已经成功提交。请耐心等候...</div>
+					<div class="weui-dialog__ft">
+						<a href="wx_cusmenu.html" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+			<!--BEGIN Error-->
+			<div class="js_dialog" id="error" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">系统错误。。。</div>
+					<div class="weui-dialog__ft">
+						<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+			<!--BEGIN Error-->
+			<div class="js_dialog" id="TextError" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">请填写文字描述。</div>
+					<div class="weui-dialog__ft">
+						<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+			<!--BEGIN Error-->
+			<div class="js_dialog" id="PhotoError" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">您没有上传图片，请上传图片。</div>
+					<div class="weui-dialog__ft">
+						<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+			<!--BEGIN Error-->
+			<div class="js_dialog" id="textAndPhoto" style="display: none;">
+				<div class="weui-mask"></div>
+				<div class="weui-dialog">
+					<div class="weui-dialog__bd">文字描述和图片为必填项，若是给你带来不便请见谅.</div>
+					<div class="weui-dialog__ft">
+						<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+					</div>
+				</div>
+			</div>
+			<!--END loadError-->
+		</div>
+		<!-- 引用js 获取cookie值 -->
+		<script src="js/wx_login.js"></script>
+		<script src="WEIXIN/js/example.js"></script>
+		<!-- 报修工单的提交 -->
+		<script src="js/wx_repairTable.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#dialogs').on('click', '.weui-dialog__btn', function() {
+					$(this).parents('.js_dialog').fadeOut(200);
+				});
+				initSelectProject(); //根据客户id 查询项目 里面调用了initSelectEquipment();//根据项目id 查询设备
+
+			});
+		</script>
+	</body>
+
+</html>

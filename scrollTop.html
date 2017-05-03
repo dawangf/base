@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="scrollTop.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<br />\n<br /><br /><br />\n<br /><br /><br /><br /><br /><br />\n<br /><br /><br /><br /><br /><br /><br />\n<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<button id="btnEaseout">点击我执行Math.easeout返回顶部</button>
+		
+		<script type="text/javascript">
+			document.getElementById('btnEaseout').onclick = function () { 
+				//判断按钮在屏幕的高度位置
+				var doc = document.body.scrollTop? document.body : document.documentElement; 
+				
+				//执行返回顶部动画函数
+				Math.easeout(doc.scrollTop, 0, 4, function (value) {
+					doc.scrollTop = value;
+				}); 
+			};
+		</script>
+	</body>
+</html>

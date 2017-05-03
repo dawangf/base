@@ -1,0 +1,40 @@
+/*
+Error: Invalid GBK character "\xE5"
+        on line 65 of mixins.scss
+
+60:     @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {        
+61:         #{$prefix}#{$property}: $value;
+62:     }
+63: }
+64: 
+65: //Retina图片
+66: @mixin image-2x($image, $width, $height) {
+67:   @media (min--moz-device-pixel-ratio: 1.3),
+68:          (-o-min-device-pixel-ratio: 2.6/2),
+69:          (-webkit-min-device-pixel-ratio: 1.3),
+70:          (min-device-pixel-ratio: 1.3),
+
+Backtrace:
+mixins.scss:65
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1300:in `rescue in block in find_encoding_error'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1297:in `block in find_encoding_error'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `each'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `each_with_index'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:1296:in `find_encoding_error'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/util.rb:905:in `check_sass_encoding'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:436:in `check_encoding!'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:392:in `_to_tree'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:391:in `run'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:63:in `process_result'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:52:in `parse'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:19:in `parse!'
+C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.23/bin/sass:13:in `<top (required)>'
+c:/Ruby23-x64/bin/sass:22:in `load'
+c:/Ruby23-x64/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid GBK character \"\xE5\"\A         on line 65 of mixins.scss\A \A 60:     @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {        \A 61:         #{$prefix}#{$property}: $value;\A 62:     }\A 63: }\A 64: \A 65: //Retina图片\A 66: @mixin image-2x($image, $width, $height) {\A 67:   @media (min--moz-device-pixel-ratio: 1.3),\A 68:          (-o-min-device-pixel-ratio: 2.6/2),\A 69:          (-webkit-min-device-pixel-ratio: 1.3),\A 70:          (min-device-pixel-ratio: 1.3),"; }
